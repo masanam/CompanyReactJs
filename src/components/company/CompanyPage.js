@@ -5,7 +5,6 @@ import Helpers from '../../utilities/Helpers'
 import api from '../../utilities/api'
 import EditCompanyPage from './EditCompanyPage'
 import './CompanyPage.css'
-
 import CompanyStore from '../../stores/CompanyStore'
 
 class CompanyView extends Component {
@@ -13,13 +12,16 @@ class CompanyView extends Component {
     super(props)
 
     this.state = {
+      searchTerm: '',
       userId: '',
       company: []
     }
 
     this.getCompany = this.getCompany.bind(this)
+    this.searchUpdated = this.searchUpdated.bind(this)
   }
 
+  
   getCompany () {
     let company = CompanyStore.getAllCompany()
     console.log(company)
@@ -61,6 +63,19 @@ class CompanyView extends Component {
     api.addFavorit (companyId)
   }  
 
+  searchUpdated(event){
+    if (event.key === "Enter") {
+      api.findCompanyName (event.target.value).then(loadCompanySuccess.bind(this))
+      function loadCompanySuccess (company) {
+        this.setState({
+          company: company.data,
+          userId: window.sessionStorage.getItem('userId')
+        })
+        Helpers.showInfo('Company loaded')
+      }
+      }
+    }
+
   render () {
     console.log(this.state.company)
 
@@ -73,15 +88,27 @@ class CompanyView extends Component {
                 <button className='btn btn-primary'  onClick={this.markCompany.bind(this,  item.id)}>Marked</button>
         </td>      
       </tr>
-      
     )
 
     return (
       <div className='company-view text-center'>
-        <h1>All Company</h1>           
-           <Link to='/company/create'>
-            <button>Add Company</button>
-          </Link>
+        <h1>All Company</h1>   
+        <div className="flex-container">
+            <div className="flex-left">
+            <input 
+                    type="search" 
+                    name="search" 
+                    className='form-control input-sm chat-input md'
+                    onKeyPress ={this.searchUpdated}
+                    placeholder="Search..." 
+                  />    
+                  </div>
+            <div className="flex-right">
+                            <Link to='/company/create'>
+                              <button>Add Company</button>
+                            </Link>    
+                            </div>
+        </div>
         <table className='company-table'>
           <thead>
             <tr>
@@ -95,9 +122,11 @@ class CompanyView extends Component {
             {companyRows}
           </tbody>
         </table>
-      </div>
+</div>
+
     )
   }
+
 }
 
 export default CompanyView

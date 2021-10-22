@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Helpers from '../../utilities/Helpers'
 import api from '../../utilities/api'
+import { Link } from 'react-router-dom'
 
 
 import FavoritStore from '../../stores/FavoritStore'
@@ -61,7 +62,22 @@ class FavoritView extends Component {
     return (
       <div className='favorit-view text-center'>
         <h1>All Favorit</h1>
-        <table className='favorit-table'>
+        <div className="flex-container">
+            <div className="flex-left">
+            <input 
+                    type="search" 
+                    name="search" 
+                    className='form-control input-sm chat-input md'
+                    onKeyPress ={this.handleValue}
+                    placeholder="Search..." 
+                  />    </div>
+            <div className="flex-right">
+                            <Link to='/company/list'>
+                              <button>All Company</button>
+                            </Link>    
+                            </div>
+        </div>
+        <table className='company-table'>
           <thead>
             <tr>
               <th>Name</th>

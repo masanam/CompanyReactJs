@@ -45,6 +45,16 @@ let api = (function () {
     })
   }
 
+  function findCompanyName (name) {
+    return $.ajax({
+      method: 'POST',
+      url: baseUrl + 'users/search-company',
+      headers: getUserAuthHeaders(),
+      data: JSON.stringify({name}),
+      contentType: 'application/json'
+    })
+  }
+
   function createCompany (name, address, phone) {
     return $.ajax({
       method: 'POST',
@@ -112,6 +122,7 @@ let api = (function () {
     createCompany,
     editCompany,
     deleteCompany,
+    findCompanyName,
     listFavorit,
     addFavorit,
     deleteFavorit,

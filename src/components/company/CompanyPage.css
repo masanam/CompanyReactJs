@@ -10,6 +10,31 @@ td {
   text-overflow: ellipsis;
 }
 
+.company-table{
+  margin:0 auto;
+}
 .companys-view {
   margin-left: 5%;
 }
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-left {
+  width: 75%;
+  padding:10px;
+  margin-left:100px;
+}
+
+.flex-right {
+  width: 25%;
+  margin-right:100px;
+
+}
+
+.md{
+  width: 200px;
+}
+
