@@ -40,27 +40,27 @@ let api = (function () {
   function findCompanyById (companyId) {
     return $.ajax({
       method: 'GET',
-      url: baseUrl + 'users/search-company/' + companyId,
+      url: baseUrl + 'users/company/' + companyId,
       headers: getUserAuthHeaders()
     })
   }
 
-  function createCompany (title, author, description, imageUrl, addedByUser) {
+  function createCompany (name, address, phone) {
     return $.ajax({
       method: 'POST',
       url: baseUrl + 'users/add-company',
       headers: getUserAuthHeaders(),
-      data: JSON.stringify({title, author, description, imageUrl, addedByUser}),
+      data: JSON.stringify({name, address, phone}),
       contentType: 'application/json'
     })
   }
 
-  function editCompany (companyId, title, author, description, imageUrl, addedByUser) {
+  function editCompany (companyId, name, address, phone) {
     return $.ajax({
       method: 'PUT',
       url: baseUrl + 'users/edit-company/' + companyId,
       headers: getUserAuthHeaders(),
-      data: { title, author, description, imageUrl, addedByUser }
+      data: { name, address, phone }
     })
   }
 
@@ -83,21 +83,17 @@ let api = (function () {
 
   function addFavorit (companyId) {
     return $.ajax({
-      method: 'POST',
-      url: baseUrl + 'users/mark-favorit',
-      headers: getUserAuthHeaders(),
-      data: JSON.stringify({companyId}),
-      contentType: 'application/json'
+      method: 'GET',
+      url: baseUrl + 'users/add-favorit/' + companyId,
+      headers: getUserAuthHeaders()
     })
   }
 
   function deleteFavorit (companyId) {
     return $.ajax({
-      method: 'POST',
-      url: baseUrl + 'users/mark-favorit',
-      headers: getUserAuthHeaders(),
-      data: JSON.stringify({companyId}),
-      contentType: 'application/json'
+      method: 'GET',
+      url: baseUrl + 'users/delete-favorit/' + companyId,
+      headers: getUserAuthHeaders()
     })
   }
 

@@ -11,9 +11,9 @@ class DeleteCompanyPage extends Component {
     this.state = {
       company: {
         companyId: '',
-        title: '',
-        author: '',
-        description: ''
+        name: '',
+        address: '',
+        phone: ''
       }
     }
 
@@ -27,16 +27,16 @@ class DeleteCompanyPage extends Component {
       this.setState({
         company: {
           companyId: id,
-          title: company.title,
-          author: company.author,
-          description: company.description
+          name: company.name,
+          address: company.address,
+          phone: company.phone
         }
       })
     }
   }
 
   componentWillUnmount () {
-    Helpers.showInfo(`The company ${this.state.title} was deleted`)    
+    Helpers.showInfo(`The company ${this.state.name} was deleted`)    
   }
 
   deleteCompany (event) {
@@ -47,7 +47,7 @@ class DeleteCompanyPage extends Component {
     .then(deleteCompanySuccess.bind(this))
 
     function deleteCompanySuccess () {
-      this.props.history.push('/companys-library/companys')
+      this.props.history.push('/company/companys')
     }
   }
 
@@ -60,27 +60,27 @@ class DeleteCompanyPage extends Component {
             <form className='company-form'>
               <h2>Confirm Delete Company</h2>
               <label>
-                <div>Title:</div>
+                <div>Name:</div>
                 <input
                   className='form-control input-sm chat-input'
-                  type='text' name='title' size='35' disabled
-                  value={this.state.company.title} />
+                  type='text' name='name' size='35' disabled
+                  value={this.state.company.name} />
               </label>
               <br />
               <label>
-                <div>Author:</div>
+                <div>Address:</div>
                 <input
                   className='form-control input-sm chat-input'
-                  type='text' name='author' disabled size='35'
-                  value={this.state.company.author} />
+                  type='text' name='address' disabled size='35'
+                  value={this.state.company.address} />
               </label>
               <br />
               <label>
-                <div>Description:</div>
-                <textarea
+                <div>Phone:</div>
+                <input
                   className='form-control input-sm chat-input'
-                  name='description' rows='10' disabled cols='50'
-                  value={this.state.company.description} />
+                  type='text' name='phone' disabled size='35'
+                  value={this.state.company.phone} />
               </label>
               <div className='group-btn text-center'>
                 <input

@@ -57,6 +57,10 @@ class CompanyView extends Component {
     }
   }
 
+  markCompany(companyId) {
+    api.addFavorit (companyId)
+  }  
+
   render () {
     console.log(this.state.company)
 
@@ -65,21 +69,26 @@ class CompanyView extends Component {
         <td>{item.name}</td>
         <td>{item.address}</td>
         <td>{item.phone}</td>
-        <td><Link to={`/company/details/${item.id}`}>More info</Link></td>
+        <td>
+                <button className='btn btn-primary'  onClick={this.markCompany.bind(this,  item.id)}>Marked</button>
+        </td>      
       </tr>
       
     )
 
     return (
       <div className='company-view text-center'>
-        <h1>All Company</h1>
+        <h1>All Company</h1>           
+           <Link to='/company/create'>
+            <button>Add Company</button>
+          </Link>
         <table className='company-table'>
           <thead>
             <tr>
               <th>Name</th>
               <th>Address</th>
               <th>Phone</th>
-              <th>Description</th>
+              <th>Marked</th>
             </tr>
           </thead>
           <tbody>

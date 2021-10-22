@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-
 import Helpers from '../../utilities/Helpers'
 import api from '../../utilities/api'
-import './FavoritPage.css'
+
 
 import FavoritStore from '../../stores/FavoritStore'
 
@@ -39,24 +37,23 @@ class FavoritView extends Component {
     }
   }
 
-  prepareFavoritForEdit (favoritId) {
-    api.findFavoritById(favoritId)
-      .then(loadFavoritForEditSuccess.bind(this))
 
-    function loadFavoritForEditSuccess (favoritInfo) {
 
-    }
-  }
+  unMarkFavorit(favoritId) {
+    api.deleteFavorit (favoritId)
+  }  
 
   render () {
     console.log(this.state.favorit)
 
     let favoritRows = this.state.favorit.map(item =>
-      <tr key={item.id}>
-        <td>{item.name}</td>
-        <td>{item.address}</td>
-        <td>{item.phone}</td>
-        <td><Link to={`/favorit/details/${item.id}`}>More info</Link></td>
+      <tr key={item.company.id}>
+        <td>{item.company.name}</td>
+        <td>{item.company.address}</td>
+        <td>{item.company.phone}</td>
+        <td>
+                <button className='btn btn-primary'  onClick={this.unMarkFavorit.bind(this,  item.id)}>UnMarked</button>
+        </td>      
       </tr>
       
     )
@@ -70,7 +67,7 @@ class FavoritView extends Component {
               <th>Name</th>
               <th>Address</th>
               <th>Phone</th>
-              <th>Description</th>
+              <th>UnMarked</th>
             </tr>
           </thead>
           <tbody>

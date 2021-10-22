@@ -9,11 +9,9 @@ class CreateCompanyPage extends Component {
 
     this.state = {
       company: {
-        title: '',
-        author: '',
-        description: '',
-        imageUrl: '',
-        addedByUser: ''
+        name: '',
+        address: '',
+        phone: ''
       }
     }
 
@@ -38,16 +36,15 @@ class CreateCompanyPage extends Component {
     event.preventDefault()
     const username = window.sessionStorage.getItem('username')
     api.createCompany(
-      this.state.company.title,
-      this.state.company.author,
-      this.state.company.description,
-      this.state.company.imageUrl,
+      this.state.company.name,
+      this.state.company.address,
+      this.state.company.phone,
       username
     )
     .then(createCompanySuccess.bind(this))
     function createCompanySuccess () {
-      Helpers.showInfo(`The company ${this.state.title} was created!`)
-      this.props.history.push('/companys-library/companys')
+      Helpers.showInfo(`The company ${this.state.company.name} was created!`)
+      this.props.history.push('/company/companys')
     }
   }
 
@@ -58,38 +55,29 @@ class CreateCompanyPage extends Component {
           <form className='company-form'>
             <h2>Create Company</h2>
             <label>
-              <div>Title:</div>
+              <div>Name:</div>
               <input
                 className='form-control input-sm chat-input'
-                type='text' name='title' size='50' required
-                value={this.state.company.title}
+                type='text' name='name' size='50' required
+                value={this.state.company.name}
                 onChange={this.handleUserChange} />
             </label>
             <br />
             <label>
-              <div>Company image url (optional):</div>
+              <div>Address:</div>
               <input
                 className='form-control input-sm chat-input'
-                type='url' name='imageUrl' size='50'
-                value={this.state.company.imageUrl}
+                type='text' name='address' required size='50'
+                value={this.state.company.address}
                 onChange={this.handleUserChange} />
             </label>
             <br />
             <label>
-              <div>Author:</div>
+              <div>Phone:</div>
               <input
                 className='form-control input-sm chat-input'
-                type='text' name='author' required size='50'
-                value={this.state.company.author}
-                onChange={this.handleUserChange} />
-            </label>
-            <br />
-            <label>
-              <div>Description:</div>
-              <textarea
-                className='form-control input-sm chat-input'
-                name='description' rows='10' cols='50'
-                value={this.state.company.description}
+                type='text' name='phone' required size='50'
+                value={this.state.company.phone}
                 onChange={this.handleUserChange} />
             </label>
             <br />

@@ -11,11 +11,9 @@ class EditCompanyPage extends Component {
     this.state = {
       company: {
         companyId: '',
-        title: '',
-        author: '',
-        description: '',
-        imageUrl: '',
-        addedByUser: ''
+        name: '',
+        address: '',
+        phone: ''
       }
     }
 
@@ -30,11 +28,10 @@ class EditCompanyPage extends Component {
       this.setState({
         company: {
           companyId: id,
-          title: company.title,
-          author: company.author,
-          description: company.description,
-          imageUrl: company.imageUrl,
-          addedByUser: company.addedByUser
+          title: company.name,
+          author: company.address,
+          description: company.phone
+
         }
       })
     }
@@ -59,16 +56,15 @@ class EditCompanyPage extends Component {
     const username = window.sessionStorage.getItem('username')
     api.editCompany(
       company.companyId,
-      company.title,
-      company.author,
-      company.description,
-      company.imageUrl,
+      company.name,
+      company.address,
+      company.phone,
       username
     )
     .then(editCompanySuccess.bind(this))
     function editCompanySuccess () {
-      Helpers.showInfo(`The company ${this.state.title} was edited`)
-      this.props.history.push('/companys-library/companys')
+      Helpers.showInfo(`The company ${this.state.name} was edited`)
+      this.props.history.push('/company/companys')
     }
   }
 
@@ -80,40 +76,32 @@ class EditCompanyPage extends Component {
             <form className='company-form'>
               <h2>Edit Company</h2>
               <label>
-                <div>Title:</div>
-                <input
-                  className='form-control input-sm chat-input'
-                  type='text' name='title' size='50' required
-                  value={this.state.company.title}
-                  onChange={this.handleUserChange} />
-              </label>
-              <label>
-                <div>Image url:</div>
-                <input
-                  className='form-control input-sm chat-input'
-                  type='url' name='imageUrl' size='50'
-                  value={this.state.company.imageUrl}
-                  onChange={this.handleUserChange} />
-              </label>
-              <br />
-              <label>
-                <div>Author:</div>
-                <input
-                  className='form-control input-sm chat-input'
-                  type='text' name='author' required size='50'
-                  value={this.state.company.author}
-                  onChange={this.handleUserChange} />
-              </label>
-              <br />
-              <label>
-                <div>Description:</div>
-                <textarea
-                  className='form-control input-sm chat-input'
-                  name='description' rows='10' cols='50'
-                  value={this.state.company.description}
-                  onChange={this.handleUserChange} />
-              </label>
-              <br />
+              <div>Name:</div>
+              <input
+                className='form-control input-sm chat-input'
+                type='text' name='name' size='50' required
+                value={this.state.company.name}
+                onChange={this.handleUserChange} />
+            </label>
+            <br />
+            <label>
+              <div>Address:</div>
+              <input
+                className='form-control input-sm chat-input'
+                type='text' name='address' required size='50'
+                value={this.state.company.address}
+                onChange={this.handleUserChange} />
+            </label>
+            <br />
+            <label>
+              <div>Phone:</div>
+              <input
+                className='form-control input-sm chat-input'
+                type='text' name='phone' required size='50'
+                value={this.state.company.phone}
+                onChange={this.handleUserChange} />
+            </label>
+            <br />
               <div className='group-btn text-center'>
                 <input
                   className='btn btn-primary btn-md'
