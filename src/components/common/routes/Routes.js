@@ -9,6 +9,13 @@ import LoginPage from '../../users/LoginPage'
 import RegisterPage from '../../users/RegisterPage'
 import Logout from '../../users/Logout'
 
+import FavoritPage from '../../company/FavoritPage'
+import CompanyPage from '../../company/CompanyPage'
+import EditCompanyPage from '../../company/EditCompanyPage'
+import CreateCompanyPage from '../../company/CreateCompanyPage'
+import DeleteCompanyPage from '../../company/DeleteCompanyPage'
+import CompanyDetails from '../../company/CompanyDetails'
+
 const Routes = () => (
   <Switch>
     <Route exact path='/' component={HomePage} />
@@ -18,6 +25,13 @@ const Routes = () => (
     <Route path='/company/register' component={RegisterPage} />
     <PrivateRoute path='/company/logout' component={Logout} />
     <PrivateRoute path='/company/profile' component={ProfilePage} />
+    <PrivateRoute path='/company/list' component={CompanyPage} />
+    <PrivateRoute path='/company/details/:id' component={CompanyDetails} />
+    <PrivateRoute path='/company/edit/:id' component={EditCompanyPage} />
+    <PrivateRoute path='/company/delete/:id' component={DeleteCompanyPage} />
+    <PrivateRoute path='/company/create' component={CreateCompanyPage} />
+    <PrivateRoute path='/company/favorit' component={FavoritPage} />
+
   </Switch>
 )
 

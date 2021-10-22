@@ -14,11 +14,6 @@ class HomePage extends Component {
           <Link to='/company/list'>
             <button>All Company</button>
           </Link>
-          <br />
-          <Link to='/company/create'>
-            <button>Add Company</button>
-          </Link>
-          <hr />
         </div>
     } else {
       userGreeting =

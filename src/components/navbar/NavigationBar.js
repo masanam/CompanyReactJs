@@ -18,7 +18,7 @@ class NavigationBar extends Component {
         <span>
           <Link to='/company/home'>Home</Link>
           <Link to='/company/list'>Company</Link>
-          <Link to='/company/create'>Add</Link>
+          <Link to='/company/favorit'>Favorit</Link>
           <Link to='/company/logout'>Logout</Link>
           <span className='loggedInUser'>
             <Link to='/company/profile'>
