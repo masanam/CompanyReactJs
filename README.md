@@ -1,3 +1,16 @@
+# React App
+
+Frontend Application
+
+Feature :
+1. Register\
+2. Login\
+3. Add Company\
+4. List Company\
+5. Mark as Favourite\
+6. UnMark as Favourite\
+7. List Favourite\
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
